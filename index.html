@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+
+<html class="k-webkit k-webkit103 js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> - Resultados de laboratorio clínico</title>
+        
+    
+
+
+
+        <link rel="stylesheet" href="./index_files/font-awesome.min.css">
+	<!--This CSS entry was added by the Telerik VS Extensions for compatibility reasons-->
+	<link href="./index_files/kendo.compatibility.css" rel="stylesheet" type="text/css">
+	<link href="./index_files/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./index_files/kendo.mobile.all.min.css" rel="stylesheet" type="text/css">
+	<link href="./index_files/kendo.bootstrap.min.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" async="" src="./index_files/recaptcha__es.js.descarga" crossorigin="anonymous" integrity="sha384-SwqGOU1+iP+bJcV3b2+nYqOavIIQ3B+B4JPyMwguD3aeHv8DhRmtCF2KwsGG6O9c"></script><script type="text/javascript" async="" src="./index_files/recaptcha__es.js.descarga" crossorigin="anonymous" integrity="sha384-SwqGOU1+iP+bJcV3b2+nYqOavIIQ3B+B4JPyMwguD3aeHv8DhRmtCF2KwsGG6O9c"></script><script src="./index_files/jquery.min.js.descarga"></script>
+	<script src="./index_files/angular.min.js.descarga"></script>
+	<script src="./index_files/jszip.min.js.descarga"></script>
+	<script src="./index_files/kendo.all.min.js.descarga"></script>
+	<script src="./index_files/kendo.aspnetmvc.min.js.descarga"></script>
+	<script src="./index_files/kendo.modernizr.custom.js.descarga"></script>
+
+        <link rel="stylesheet" href="./index_files/kendo.common.min.css">
+        <link rel="stylesheet" href="./index_files/kendo.rtl.min.css">
+        <link rel="stylesheet" href="./index_files/kendo.bootstrap.min(1).css">
+        <link rel="stylesheet" href="./index_files/kendo.mobile.all.min(1).css">
+
+        <script src="./index_files/jquery-1.12.4.min.js.descarga"></script>
+        <script src="./index_files/kendo.all.min.js(1).descarga"></script>
+
+
+        <link rel="stylesheet" href="./index_files/bootstrap.min.css">
+        <link href="./index_files/css" rel="stylesheet">
+        <script src="./index_files/bootstrap.min.js.descarga"></script>
+        <script src="./index_files/api.js.descarga"></script>
+</head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header" style="float: none; text-align:center; height: 120px">
+                    
+                    <a target="_blank"><img src="./index_files/logo_lmn.png"></a>
+                    
+                </div>
+                
+            </div>
+        </nav>
+        <div id="body">
+            
+            <section class="content-wrapper main-content clear-fix">
+                <style>
+    fieldset.groupbox-border {
+        border: 1px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 1.2em 1.2em 1.2em 1.2em !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    legend.groupbox-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width: auto;
+        padding: 0px 10px 0px 10px;
+        border-bottom: none;
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 10px auto;
+        padding: 10px;
+        width: 90%;
+        min-width: 300px;
+    }
+
+    #recuperarForm {
+        background-color: #ffffff;
+        margin: 10px auto;
+        padding: 10px;
+        width: 90%;
+        min-width: 300px;
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+    }
+
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+    .tab {
+        display: none;
+    }
+
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        .step.finish {
+            background-color: #4CAF50;
+        }
+
+    .buttonload {
+        background-color: white;
+        border: none;
+        color: #337ab7;
+        /*padding: 12px 24px;
+        font-size: 16px;*/
+    }
+
+    #RecuperacionNumero {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    .rojo {
+        color: red;
+    }
+
+    .EsconderRecover {
+        display: none !important;
+    }
+
+    .ResultadoPositivo {
+        /*background-color: #d9534f !important;*/
+        background-color: #FFBFBF !important;
+    }
+
+    .ResultadoNegativo {
+        background-color: #DAFDD4 !important;
+    }
+    .SinResultados {
+        /*background-color: #FFC133 !important;*/
+        background-color: #FFBFBF !important;
+    }
+
+</style>
+
+<div id="paginaPrincipal" style="">
+    <div class="modal fade" id="modalRegistrarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Inscripción de paciente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--Inicio formulario multiparte-->
+                    <form id="regForm" action="https://resultados2.tested.cl/Resultados/ConsultarResultados?NumeroOrden=004203610">
+
+                       
+
+                       
+
+                    </form>
+                    <!--Fin formulario multiparte-->
+                    <!---->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Recuperar clave-->
+    <div class="modal fade" id="modalRecuperarClave" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recuperarClaveTitulo">Recuperar clave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--Inicio formulario multiparte-->
+                    <form id="recuperarForm" action="https://resultados2.tested.cl/Resultados/ConsultarResultados?NumeroOrden=004203610">
+                        <div id="camposRecuperar">
+                            <label for="recuperarDocumento">Documento</label>
+                            <input type="text" class="form-control" id="recuperarDocumento" placeholder="RUT o Pasaporte">
+                            <small id="documentoNota" class="form-text text-muted">Ingrese RUT o Pasaporte que utilizó a la hora de crer su cuenta.</small><br>
+                        </div>
+                        <p id="mensajeCorreoRec" style="display:none;"></p>
+                       
+                        <br>
+                    </form>
+                    <!--Fin formulario multiparte-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin recuperar clave-->
+
+    <div class="container-fluid" style="    height: 710px;">
+        <div class="row content vdivide" style="display: flex">
+            <!-- First Container -->
+            <div class="col-lg-6 container-fluid bg-2 text-center">
+                <h3 class="margin">Portal Paciente</h3>
+                <div class="alert alert-success" role="alert" style="text-align: center; display: none;" id="mensajeDivPrin">
+                    <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <strong id="strong"></strong><p id="mensajeP"></p>
+                </div>
+                <fieldset class="groupbox-border">
+                    <legend class="groupbox-border">Consultando datos del paciente y examenes</legend>
+                    <div class="row no-gutter" style="margin-top: 22px;">
+                        <div class="col-sm-6">
+                            <label>Paciente:</label>
+                            <input class="k-textbox k-state-disabled" disabled="disabled" id="Paciente" name="Paciente" placeholder="RUT" style="width:100%;" value="TOMÁS LOBOS -">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label>Documento:</label>
+                            <input class="k-textbox k-state-disabled" disabled="disabled" id="Documento" name="Documento" placeholder="RUT" style="width:100%;" value="22414537-3">
+                        </div>
+                    </div>
+                    <div class="row no-gutter" style="margin-top: 22px;">
+                        <div class="col-sm-6">
+                            <label>Sexo</label>
+                            <input class="k-textbox k-state-disabled" disabled="disabled" id="Sexo" name="Sexo" placeholder="Prestacion" style="width:100%;" value="Masculino">
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            
+                            <label>Toma de muestra</label>
+                            <input class="k-textbox k-state-disabled" disabled="disabled" id="Fecha" name="Fecha" placeholder="Fecha" style="width:100%;" value="2022-07-02 16:28:32">
+                        </div>
+
+                        
+
+                    </div>
+
+                    <div class="row no-gutter" style="margin-top: 22px;">
+                        
+                        <div class="col-sm-6">
+                            <label>Prestación</label>
+                            <input class="k-textbox k-state-disabled" disabled="disabled" id="Prestacion" name="Prestacion" placeholder="Prestacion" style="width:100%;" value="PCR SARS-CoV-2">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label>Resultado</label>
+                            <input class="k-textbox k-state-disabled ResultadoNegativo" disabled="disabled" id="ResultadoPaciente" name="Resultado" placeholder="Resultado" style="width:100%;" value="Negativo">
+
+                            
+                                
+
+                        </div>
+
+                        
+
+                    </div>
+                    <div class="row no-gutter" style="margin-top:22px;">
+
+                        <label>NovusLisBM - Desarrollado por www.sirantic.cl</label>
+
+                    </div>
+
+                    <div class="row no-gutter" style="margin-top: 22px;">
+                       
+                        <script>
+                            setTimeout("GetResultadosPacientes()", 1000);
+
+                            function GetResultadosPacientes() {
+                                var Resultados = 'Negativo';
+                                if (Resultados == "SIN RESULTADOS") {
+
+                                    $("#ResultadoPaciente").addClass("SinResultados")
+
+                                    $("#ResultadoPaciente").find("label").text(Resultados)
+
+                                }
+                                if (Resultados == "Negativo") {
+
+                                    $("#ResultadoPaciente").addClass("ResultadoNegativo")
+
+                                    $("#ResultadoPaciente").find("label").text(Resultados)
+
+                                } else {
+                                    $("#ResultadoPaciente").addClass("ResultadoPositivo")
+
+                                    $("#ResultadoPaciente").find("label").text(Resultados)
+                                }
+                            }
+                        </script>
+                    </div>
+
+
+                </fieldset>
+        </div>
+    </div>
+
+    <div id="recaptcha" class="g-recaptcha" data-sitekey="" data-callback="onSubmit" data-size="invisible" data-theme="dark">
+        
+        
+    </div>
+
+    <span id="staticNotification" data-role="notification" style="display: none;"></span>
+    <span id="staticValidation" data-role="notification" style="display: none;"></span>
+
+    <div id="ver-imagen-id" style="padding:20px; display: none">
+        <div class="modal-body">
+            <img id="img-id" src="./index_files/comprobante.png">
+        </div>
+        <div class="modal-footer">
+            <div class="btn-group pull-right">
+                <button id="cerrar-ver-imagen-id" class="btn btn-primary">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+
+   
+
+   
+    <!-- Third Container (Grid) -->
+   
+
+    <div id="prestacionesPaciente"></div>
+
+</div>
+
+<span id="RecuperarAtencionPopUp">
+
+</span>
+<script src="./index_files/api.js.descarga" async="" defer=""></script>
+<script type="text/html" id="my-popover-content">
+    <ul>
+        <li>Fosfatasas alc. c/separación isoenz. c/u</li>
+        <li>H.I.V.</li>
+        <li>Electroforesis de proteínas urinarias</li>
+        <li>Electroforesis de proteínas</li>
+    </ul>
+</script>
+    </div>
+<style>
+    .popover {
+        z-index: 100004
+    }
+
+    .k-dropdown-wrap {
+        padding-bottom: 5px;
+    }
+
+
+    #lista:hover {
+        text-decoration: none;
+        cursor: help;
+    }
+
+    #preguntas {
+        color: #2f2f2f;
+    }
+
+        #preguntas:hover,
+        #terminos:hover {
+            text-decoration: none;
+            color: #23527c;
+        }
+
+    #terminos {
+        border-bottom: solid 1px;
+        color: #000000;
+    }
+
+    #myID {
+        text-decoration: none;
+    }
+
+    .modal-footer {
+        border-top: none;
+        border-bottom: 1px solid #e5e5e5;
+        padding-top: unset;
+    }
+
+    .row.vdivide [class*='col-lg-6']:not(:last-child):after {
+        background: #e0e0e0;
+        width: 1px;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        min-height: 70px;
+    }
+</style>
+<script>
+    $("#Ingresar").click(function (e) {
+        let documento;
+        if ($("#Identificacion").data("kendoDropDownList").value() == "P") {
+            documento = $("#Pasaporte");
+        } else {
+            documento = $("#RutPaciente");
+        }
+        let password = $('#claveUsuario').val();
+
+        let procesar = true;
+
+        if (documento.val() == "") {
+            documento.addClass("invalid");
+            procesar = false;
+        } else {
+            documento.removeClass("invalid");
+        }
+        if (password.length < 5) {
+            $('#claveUsuario').addClass("invalid");
+            procesar = false;
+        } else {
+            documento.removeClass("invalid");
+        }
+
+        if (!procesar)
+            return;
+
+        $.ajax({
+            url: "/Resultados/IngresoUsuario",
+            type: "POST",
+            data: { Documento: documento.val(), Clave: password },
+            success: function (e) {
+                if (e.Status == "Ok") {
+                    //alert("Ingreso correcto")
+                    window.location.replace(`/Resultados/ResultadosPacienteIngresado`);
+                } else {
+                    mensajeParaUsuario('Error', 'Revise la información ingresada y pruebe nuevamente.', 'Error');
+                    //alert(`${e.Mensaje}`)
+                    console.log(`%c Error al intentar recuperar la clave: ${e.Mensaje}`);
+                }
+                documento.val("");
+                $('#claveUsuario').val("");
+            }
+        })
+    })
+
+    $("#continuarRecuperar").click(function (e) {
+        $('#modalRecuperarClave').modal('toggle');
+    })
+    $("#solicitarRecuperar").click(function (e) {
+        if ($("#recuperarDocumento").val() == "") {
+            $('#recuperarDocumento').addClass("invalid");
+        } else {
+            $('#recuperarDocumento').removeClass("invalid");
+            $.ajax({
+                url: "/Resultados/RecuperarClave",
+                type: "POST",
+                data: { Documento: $("#recuperarDocumento").val() },
+                success: function (e) {
+                    if (e.Status == "Ok") {
+                        document.getElementById('mensajeCorreoRec').innerHTML = `Se ha enviado a su correo ${e.Email} una solicitud para restablecer.`;
+                        $('#camposRecuperar').hide();
+                        $('#solicitarRecuperar').hide();
+                        $('#mensajeCorreoRec').show();
+                        $('#continuarRecuperar').show();
+                    } else {
+                        document.getElementById('mensajeCorreoRec').innerHTML = `Se ha presentado un error al intertar recuperar su clave.`;
+                        $('#camposRecuperar').hide();
+                        $('#solicitarRecuperar').hide();
+                        $('#mensajeCorreoRec').show();
+                        $('#continuarRecuperar').show();
+                        console.log(`%c Error al intentar recuperar la clave: ${e.Message}`);
+                    }
+                    //$('#modalRecuperarClave').modal('toggle');
+                }
+            })
+        }
+    })
+
+    $('#modalRecuperarClave').on('shown.bs.modal', function (e) {
+        document.getElementById("recuperarDocumento").focus();
+    })
+
+    //Evento al ocultar modal de recuperar clave
+    $('#modalRecuperarClave').on('hidden.bs.modal', function () {
+        $('#recuperarDocumento').removeClass("invalid");
+        $('#recuperarDocumento').val("");
+        $('#camposRecuperar').show();
+        $('#solicitarRecuperar').show();
+        $('#mensajeCorreoRec').hide();
+        $('#continuarRecuperar').hide();
+    });
+
+    
+   
+    let mostrarOcultar = () => {
+        if (document.getElementById("iniciarSesion").checked) {
+            $('#claveUsuario').show();
+            $('#Ingresar').show();
+
+            $('#iDatencion').hide();
+            $('#submit').hide();
+
+        }
+        if (document.getElementById('porSolicitud').checked) {
+            $('#claveUsuario').hide();
+            $('#Ingresar').hide();
+
+            $('#iDatencion').show();
+            $('#submit').show();
+        }
+
+    }
+
+    //cuando se abre el modal
+    $('#modalRegistrarUsuario').on('shown.bs.modal', function (e) {
+        document.getElementById("documento").focus();
+    })
+
+    //cuando se cierra el modal
+    $('#modalRegistrarUsuario').on('hidden.bs.modal', function () {
+        currentTab = 0; // Se inicializa en el primer tab que es el 0
+        var x = document.getElementsByClassName("tab");
+        for (var i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        limpiarFormulario()
+        $("#divBotones").show();
+        $("#divCargando").hide();
+       
+    });
+
+    function limpiarFormulario() {
+        $('#documento').val("");
+        $('#PersonaID').val("");
+        $('#Clave').val("");
+        $('#ConfirmarClave').val("");
+        $('#Email').val("");
+        $('#Fono').val("");
+        let x, y, i;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // Loop para cada uno de los campos que se encuentran en el tab actual
+        for (i = 0; i < y.length; i++) {
+            y[i].classList.remove("invalid");
+        }
+    }
+    //--------------------------------------------------------------------------------
+    function CompararClaves() {
+        if ($('#Clave').val() != $('#ConfirmarClave').val()) {
+            $('#ConfirmarClave').addClass("invalid");
+        } else {
+            $('#ConfirmarClave').removeClass("invalid");
+            $('#Clave').removeClass("invalid");
+        }
+    }
+    //--------------------------------------------------------------------------------
+
+    //--------------***Inicio lógica formulario multiparte***--------------------------
+    var currentTab = 0; // Se inicializa en el primer tab que es el 0
+    
+    function guardarRegistro() {
+        if (resaltarValidacion()) {
+            $("#divBotones").hide();
+            $("#divCargando").show();
+            $.ajax({
+                url: "/Resultados/RegistrarPortalPaciente",
+                type: "POST",
+                data: { PersonaID: $('#PersonaID').val(), Clave: $('#Clave').val(), Email: $('#Email').val(), Fono: $('#Fono').val() },
+                success: function (e) {
+                    if (e.Status == "Ok") {
+                        $('#regForm').hide()
+                        $('#registroCompleto').show(500);
+                    } else {
+                        console.log(`%c Error: ${ e.Message }`,'color:red;font-weight:bold;');
+                        $('#modalRegistrarUsuario').modal('toggle');
+                        mensajeParaUsuario('Error', 'Su intento de registro ha fallado', 'Error');
+                    }
+                }
+            })
+        }
+    }
+
+  
+
+   
+
+    function fixStepIndicator(n) {
+        // Esta función remueve toda las clases activas de todos los steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... y agbrega la clase 'active' a la actual
+        x[n].className += " active";
+    }
+    //--------------------***Fin formulario multiparte***------------------------------
+
+    //$.fn.selectRange = function (start, end) {
+    //    if (!end) end = start;
+    //    return this.each(function () {
+    //        if (this.setSelectionRange) {
+    //            this.focus();
+    //            this.setSelectionRange(start, end);
+    //        } else if (this.createTextRange) {
+    //            var range = this.createTextRange();
+    //            range.collapse(true);
+    //            range.moveEnd('character', end);
+    //            range.moveStart('character', start);
+    //            range.select();
+    //        }
+    //    });
+    //};
+
+    //(function ($) {
+    //    $.fn.selectRange = function () {
+    //        var $initialVal = this.val();
+    //        this.val($initialVal);
+    //    };
+    //})(jQuery);
+
+    var tes1 = function (e) {
+
+
+        var subcadena = e.substr(0, 7)
+
+        return subcadena;
+    }
+
+    var tes2 = function (e) {
+
+        if (e.charAt(7) == "-") {
+
+            var subcadena = e.substr(0, 7)
+            return subcadena;
+        } else {
+
+            var subcadena = e.substr(0, 7)
+            return subcadena + "-" + e.charAt(7);
+        }
+    }
+
+    var tes3 = function (e) {
+
+        if (e.charAt(8) == "-") {
+
+            var subcadena = e.substr(0, 8)
+            return tes2(subcadena);
+        }
+    }
+
+    var tes4 = function (e) {
+
+        var subcadena = e.replace("-", "");
+        var cadena1 = subcadena.substr(0, 8)
+        var cadena = cadena1 + "-" + e.charAt(9)
+
+        return cadena;
+
+    }
+
+    $("#RutPaciente").keydown(e => {
+        let forbbKeys = [109, 189];
+        if (forbbKeys.includes(e.keyCode)) return false;
+    })
+
+    $("#RutPaciente").keyup(function (e) {
+        let text, textLenght, rut, dv;
+        text = $(e.target).val().replace("-", "");
+        textLenght = text.length;
+        rut = text.substr(0, textLenght - 1);
+        dv = text.substr(textLenght - 1, 1);
+
+        if (dv === "k") dv = dv.toUpperCase();
+
+        $(e.target).val(rut + "-" + dv);
+    })
+
+    $("#Identificacion").change(function (e) {
+        if ($("#Identificacion").data("kendoDropDownList").value() == "P") {
+            $("#RutPaciente").closest("span").hide();
+            $("#Pasaporte").show();
+        } else {
+            $("#RutPaciente").closest("span").show();
+            $("#Pasaporte").hide();
+        }
+    })
+
+    function onSubmit(token) {
+        var identificacion = $("#Identificacion").data("kendoDropDownList").value();
+        var pasaporte = $("#Pasaporte").val();
+        var rut = $("#RutPaciente").data("kendoMaskedTextBox").value().split(" ")[0];
+        var orden = $("#iDatencion").val();
+
+        window.location.replace("/Resultados/_Resultados?rut=" + rut + "&orden=" + orden + "&pasaporte=" + pasaporte + "&identificacion=" + identificacion);
+
+        /*prestacionesPaciente.kendoWindow({
+            pinned: true,
+            modal: true,
+            title: "Resultados",
+            content: "/Resultados/_Resultados/?rut=" + rut + "&orden=" + orden + "&pasaporte=" + pasaporte + "&identificacion=" + identificacion,
+            visible: false,
+            actions: [
+                "Close"
+            ],
+            close: function (e) {
+                grecaptcha.reset();
+                $("input").val("");
+                $("input[type='checkbox']").prop("checked", false);
+                $.ajax({
+                    type: 'get',
+                    cache: false,
+                    crossDomain: true,
+                    dataType: 'jsonp',
+                    url: "/Resultados/SalirSession",
+                    success: function (data) {
+                        console.log('Se ha cerrado la sesión');
+                    },
+                })
+            },
+            error: function (e) {
+                prestacionesPaciente.data("kendoWindow").close();
+                staticValidation.show("<label> &nbsp;&nbsp;  Sin resultados, verifique la información</label>", "warning");
+                grecaptcha.reset();
+            }
+        }).data("kendoWindow").center().open().maximize();*/
+
+    }
+    $("#RutPaciente").click(function (e) {
+        $("#RutPaciente").data("kendoMaskedTextBox").value($("#RutPaciente").data("kendoMaskedTextBox").value())
+    })
+    $("#RutPaciente").focus(function (e) {
+        $("#RutPaciente").data("kendoMaskedTextBox").value($("#RutPaciente").data("kendoMaskedTextBox").value())
+    })
+    $("#RutPaciente").blur(function (e) {
+        staticValidation.hide()
+        if (!Fn.validaRut($("#RutPaciente").data("kendoMaskedTextBox").value())) {
+            staticValidation.show("<label> &nbsp;&nbsp;  RUT no válido</label>", "error");
+        }
+    })
+
+  
+    function onload() {
+        var element = document.getElementById('submit');
+        element.onclick = validate;
+    }
+
+
+  
+
+
+    var validator = $("#buscarResultados").kendoValidator({
+        validateOnBlur: false,
+    }).data("kendoValidator");
+    
+    
+
+   
+    $("#buscar").click(function (e) {
+        buscarIndicacion()
+    })
+
+    
+    var staticNotification = $("#staticNotification").kendoNotification({
+        appendTo: "#indicaciones",
+        autoHideAfter: 0,
+    }).data("kendoNotification");
+
+    var staticValidation = $("#staticValidation").kendoNotification({
+        appendTo: "#validacion",
+        autoHideAfter: 0,
+    }).data("kendoNotification");
+
+    function buscarIndicacion() {
+
+        var codigo = $("#prestacion").val().split(" | ");
+
+        $.ajax({
+            url: "/Resultados/GetIndicacionPrestacion",
+            method: "POST",
+            data: { codigo: codigo[0] },
+            success: function (e) {
+                staticNotification.hide()
+                staticNotification.show("<div style='word-wrap: break-word; white-space: normal;'>" + e.indicacion + "</div>", "info");
+
+                $("#prestacion").val("");
+
+            }
+        })
+    }
+    $(document).ready(function () {
+
+
+
+        $("#divCargando").hide();
+
+        
+
+        $("#toolSolicitud").kendoTooltip({ content: "Seleccione en caso de que quiera consultar por Documento y Número de atención." });
+        $("#toolIniciar").kendoTooltip({ content: "Paciente ya registrado previamente." });
+
+        $('#mensajeDivPrin').hide();
+
+        $('#paginaPrincipal').show(500);
+
+     
+    })
+    let mensajeParaUsuario = (mens1, mens2, opcion) => {
+
+        $('#mensajeDivPrin').show();
+
+        console.log(`mens1:${ mens1 } ,mens2: ${ mens2 }, opcion: ${ opcion }`);
+
+        $('#mensajeDivPrin').removeClass();
+
+        if (opcion == 'Error') {
+            $('#mensajeDivPrin').addClass('alert alert-danger');
+        } else {
+            $('#mensajeDivPrin').addClass('alert alert-success');
+        }
+
+        document.getElementById("strong").textContent = mens1;
+        document.getElementById("mensajeP").textContent = mens2;
+
+        window.setTimeout(function () {
+            $(".alert").fadeTo(5000, 0).slideUp(500, function () {
+                $('#mensajeDivPrin').hide();
+            });
+        }, 500);
+    }
+    ////
+
+    
+
+</script>
+
+
+<script>onload();</script>
+
+            </section>
+        </div>
+        
+        <footer class="bg-4 text-center">
+            <div class="col-xs-12 col-md-6" style="padding: 10px">
+                ©️ 2021 - NovusLis ®️ | SIRANTIC - Soluciones Informáticas en Salud
+            </div>
+            <div class="col-xs-12 col-md-6" style="padding: 30px; margin-top:-18px">
+                <a class="text-center" target="_blank" href="http://www.sirantic.cl/" <a=""> www.sirantic.cl</a>
+            </div>
+        </footer>
+    
+
+
+
+<style>
+    #body{
+        background-color:#fff;
+        padding-bottom:10px;
+    }
+    body {
+        font: Montserrat, sans-serif;
+        line-height: 1.8;
+        background-color: #2f2f2f;
+        margin-top: 150px;
+    }
+
+
+
+    .margin {
+        margin-bottom: 45px;
+    }
+
+    h3 {
+        color: #922B21;
+    }
+    /*footer{
+        height:300px;
+    }*/
+    
+    .bg-2 {
+        background-color: #fefefe; /* Dark Blue */
+        color: #000000;
+    }
+    #indicaciones,
+    .bg-3 {
+        background-color: #ffffff; /* White */
+        color: #555555;
+    }
+
+    .bg-4 {
+        background-color: #2f2f2f; /* Black Gray */
+        color: #fff;
+        padding-bottom: 10px;
+    }
+
+    .container-fluid {
+        padding-top:15px;
+
+    }
+
+    .navbar {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border: 0;
+        border-radius: 0;
+        margin-bottom: 0;
+        font-size: 12px;
+        letter-spacing: 5px;
+    }
+
+    .navbar-nav li a:hover {
+        /*color: #1abc9c !important;*/
+        color: #0094ff !important;
+    }
+
+    .navbar-header img {
+        height: 100%;
+    }
+</style>
+</body></html>
